@@ -127,7 +127,7 @@ index.blade.php
 #### Livewire
 Markdom also works great with Livewire and does not require any javascript.
 
-You can get a working example of an autoupdating markdown editor using livewire here: https://github.com/sinnbeck/livewire-markdom
+You can get a working example of an autoupdating markdown editor using livewire here: https://github.com/sinnbeck/markdom-livewire
 
 ## Testing
 Run tests with
