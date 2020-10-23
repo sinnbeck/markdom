@@ -2,7 +2,7 @@
 
 Markdom is a laravel package to make it simple to convert markdown to beautifully rendered html. It adds classes and allows you to automatically do code highlighting.
 
-Markdom also adds blade directives for easy usage.
+![Preview](preview.png)
 
 ### Credits
 * Markdown parsing: [CommonMark](https://github.com/thephpleague/commonmark)
