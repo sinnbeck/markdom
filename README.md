@@ -159,7 +159,6 @@ vendor/bin/pest
 ```
 
 ## Todo
-[ ] Handle classes for nested elements (ul -> li -> ul -> li)
 [ ] Handle loading of highlight styles using <link syntax
 [ ] Minification of highlight styles
 [ ] Guide for using cdn version of highlight styles (inline code breaks!)
