@@ -1,0 +1,1 @@
+<p><img src="https://github.com/sinnbeck/markdom/logo.png" alt="alt text" title="Logo Title Text 1"></p>

@@ -1,0 +1,1 @@
+<p>This is inline code <code class="hljs php"><span class="hljs-keyword">$this</span>-&gt;foo = <span class="hljs-string">'bar'</span></code> right here</p>

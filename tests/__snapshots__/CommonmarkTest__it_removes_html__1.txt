@@ -1,0 +1,4 @@
+<ul>
+<li>Foo bold text</li>
+<li>Bar</li>
+</ul>
