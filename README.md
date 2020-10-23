@@ -46,14 +46,32 @@ The main feature of Markdom is to add classes to your rendered html. This requir
 Here is a quick example using TailwindCss syntax.
 ```
     'classes' => [
-        'h1'  => 'text-3xl font-bold mt-1 mb-2 border-b',
-        'h2'  => 'text-2xl font-bold my-1 border-b',
-        'h3'  => 'text-xl font-bold my-1',
-        'p'   => 'py-2',
-        'ul'  => 'list-disc list-inside',
-        'ol'  => 'list-decimal list-inside',
-        'pre' => 'my-1'
+        'h1'     => 'text-3xl font-bold mt-1 mb-2 border-b',
+        'h2'     => 'text-2xl font-bold my-1 border-b',
+        'h3'     => 'text-xl font-bold my-1',
+        'p'      => 'py-2',
+        'ul'     => 'list-disc list-inside',
+        'ul ul'  => 'pl-8 list-disc list-inside',
+        'ol'     => 'list-decimal list-inside',
+        'pre'    => 'my-1'
     ],
+```
+The key can be any css selector, meaning you can also do `ul > li > ul` or even `.classname`. The classes are parsed in the order that they are listed in the config, meaning you can add additional classes to those set before.
+
+```
+    'classes' => [
+        'h1'     => 'title text-3xl ',
+        'h2'     => 'title text-2xl',
+        'h3'     => 'title text-xl',
+        '.title' => 'font-bold border-b',
+    ],
+```
+The above will add the class title to the header elements, and the then `'font-bold border-b'` to each. \
+Result:
+```
+<h1 class="title text-3xl font-bold border-b">Title</h1>
+<h2 class="title text-2xl font-bold border-b">Subtitle</h2>
+<h3 class="title text-xl font-bold border-b">More</h3>
 ```
 
 ## Markdown configuration
