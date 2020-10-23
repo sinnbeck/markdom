@@ -1,3 +1,8 @@
+
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/sinnbeck/markdom.svg?style=flat)](https://packagist.org/packages/sinnbeck/markdom)
+[![Downloads on Packagist](https://img.shields.io/packagist/dt/sinnbeck/markdom.svg?style=flat)](https://packagist.org/packages/sinnbeck/markdom)
+
+
 # Introduction
 
 Markdom is a laravel package to make it simple to convert markdown to beautifully rendered html. It adds classes and allows you to automatically do code highlighting.
