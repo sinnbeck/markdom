@@ -159,7 +159,8 @@ vendor/bin/pest
 ```
 
 ## Todo
-[ ] Handle loading of highlight styles using <link syntax
-[ ] Minification of highlight styles
-[ ] Guide for using cdn version of highlight styles (inline code breaks!)
-[ ] Look into passing manually set language to highlight.php
+
+- [ ] Handle loading of highlight styles using <link syntax
+- [ ] Minification of highlight styles
+- [ ] Guide for using cdn version of highlight styles (inline code breaks!)
+- [ ] Look into passing manually set language to highlight.php
