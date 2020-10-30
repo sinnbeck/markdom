@@ -44,13 +44,11 @@ class MarkdomServiceProvider extends ServiceProvider
 
     private function registerBindings()
     {
-        $this->app->bind('Sinnbeck\Markdom\Markdom', function () {
-            return new Markdom(new Highlighter());
+        $this->app->bind(Markdom::class , function ($app) {
+            return new Markdom(new Highlighter(), $app->get('commonmark'));
         });
 
-        $this->app->bind('markdom', function() {
-            return new Markdom(new Highlighter());
-        });
+        $this->app->alias(Markdom::class, 'markdom');
 
         $this->app->singleton('commonmark.environment', function ($app) {
             $environment = Environment::createCommonMarkEnvironment();

@@ -4,6 +4,7 @@ namespace Sinnbeck\Markdom;
 
 use Highlight\Highlighter;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
+use League\CommonMark\CommonMarkConverter;
 use function HighlightUtilities\getStyleSheet;
 use function HighlightUtilities\getAvailableStyleSheets;
 
@@ -22,11 +23,16 @@ class Markdom
      * @var \Illuminate\Config\Repository|\Illuminate\Contracts\Foundation\Application|mixed
      */
     protected $classes;
+    /**
+     * @var \League\CommonMark\CommonMarkConverter
+     */
+    protected $converter;
 
-    public function __construct(Highlighter $highlighter)
+    public function __construct(Highlighter $highlighter, CommonMarkConverter $converter)
     {
         $this->highlighter = $highlighter;
         $this->highlighter->setAutodetectLanguages(config('markdom.code_highlight.languages'));
+        $this->converter = $converter;
         $this->classes = config('markdom.classes', []);
     }
 
@@ -39,7 +45,7 @@ class Markdom
     public function toHtml($markdown)
     {
         $this->markdown = $markdown;
-        $html = app('commonmark')->convertToHtml($this->markdown);
+        $html = $this->converter->convertToHtml($this->markdown);
 
         $dom = HtmlPageCrawler::create($html);
 
