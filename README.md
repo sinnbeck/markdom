@@ -86,9 +86,9 @@ See a list of available extensions here: https://commonmark.thephpleague.com/1.5
 If you are using markdown for parsing code, you may enable the code highlighter, by setting `MARKDOM_CODE_HIGHLIGHT=true` in your .env file. This will automatically add highlight.js classes to the code found in code tags.
  
  CommonMark will convert \`somecode\` and \
- \``` \
+ \`\`\` \
  somecode \
- \``` \
+ \`\`\` \
  to `<code>somecode</code>` and `<pre><code>somecode</code></pre>` which will be passed to `scrivo/highlight.php` (a php implementation of highlight.js).
  
 ### Highlight theme and css
