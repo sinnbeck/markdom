@@ -53,4 +53,14 @@ return [
             'css',
         ],
     ],
+
+    /**
+     * this being enabled adds an (invisible) anchor tag to h1, h2 and h3 tags
+     */
+    'add_anchor_tags' => env('MARKDOM_ADD_ANCHORS', true),
+    'add_anchor_tags_to' => [
+        'h1',
+        'h2',
+        'h3'
+    ],
 ];

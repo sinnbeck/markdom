@@ -3,6 +3,7 @@
 namespace Sinnbeck\Markdom;
 
 use Highlight\Highlighter;
+use Illuminate\Support\Str;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 use League\CommonMark\CommonMarkConverter;
 use function HighlightUtilities\getStyleSheet;
@@ -52,6 +53,8 @@ class Markdom
         $this->addCodeHighlights($dom);
 
         $this->addClasses($dom);
+
+        $this->addAnchorTags($dom);
 
         return trim($dom->saveHTML());
     }
@@ -108,5 +111,19 @@ CSS;
     public function getAvailableThemes()
     {
         return getAvailableStyleSheets();
+    }
+
+    protected function addAnchorTags($dom)
+    {
+        if (!config('markdom.add_anchor_tags')) {
+            return;
+        }
+
+        collect(config('markdom.add_anchor_tags_to'))->each(function ($tag) use ($dom) {
+            $dom->filter($tag)->each(function($element) {
+                $element->before('<a name="' . Str::slug($element->html()) . '"/>' . PHP_EOL);
+                #dump($element);
+            });
+        });
     }
 }
