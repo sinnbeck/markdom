@@ -115,15 +115,20 @@ CSS;
 
     protected function addAnchorTags($dom)
     {
-        if (!config('markdom.add_anchor_tags')) {
+        if (!config('markdom.anchor_tags.enabled')) {
             return;
         }
 
-        collect(config('markdom.add_anchor_tags_to'))->each(function ($tag) use ($dom) {
-            $dom->filter($tag)->each(function($element) {
-                $element->before('<a name="' . Str::slug($element->html()) . '"/>' . PHP_EOL);
-                #dump($element);
+        $method = config('markdom.anchor_tags.position') === 'before'
+            ? 'before' : 'after';
+
+        collect(config('markdom.anchor_tags.elements'))
+            ->each(function ($tag) use ($dom, $method) {
+                $dom->filter($tag)->each(function($element) use ($method){
+                    $element->$method('<a name="' . Str::slug($element->html(),
+                        config('markdom.anchor_tags.slug_delimiter')) . '"/>'
+                    );
+                });
             });
-        });
     }
 }

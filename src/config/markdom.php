@@ -55,12 +55,18 @@ return [
     ],
 
     /**
-     * this being enabled adds an (invisible) anchor tag to h1, h2 and h3 tags
+     * this being enabled adds an (invisible) anchor tag to configured elements
+     *   by default this is h1, h2 and h3 to make it easy to target them in a
+     *   navigation
      */
-    'add_anchor_tags' => env('MARKDOM_ADD_ANCHORS', true),
-    'add_anchor_tags_to' => [
-        'h1',
-        'h2',
-        'h3'
+    'anchor_tags' => [
+        'enabled' => env('MARKDOM_ADD_ANCHORS', true),
+        'elements' => [
+            'h1',
+            'h2',
+            'h3',
+        ],
+        'slug_delimiter' => '-',
+        'position' => 'before', // possible values are before or after
     ],
 ];

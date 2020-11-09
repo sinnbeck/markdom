@@ -5,9 +5,10 @@ use function Spatie\Snapshots\assertMatchesTextSnapshot;
 uses(Tests\TestCase::class);
 
 test('it adds an anchor tag if enabled', function () {
-    $this->app->config->set('markdom.add_anchor_tags', true);
-    $this->app->config->set('markdom.add_anchor_tags_to', [
-        'h2'
+    $this->app->config->set('markdom.anchor_tags.enabled', true);
+    $this->app->config->set('markdom.anchor_tags.elements', [
+        'h1',
+        'h2',
     ]);
 
     $converter = app('markdom');
