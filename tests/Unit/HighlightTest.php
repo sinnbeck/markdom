@@ -5,7 +5,7 @@ use function Spatie\Snapshots\assertMatchesTextSnapshot;
 uses(Tests\TestCase::class);
 
 beforeEach(function () {
-    $this->app->config->set('markdom.code_highlight.enabled', true);
+    app()->config->set('markdom.code_highlight.enabled', true);
 });
 
 test('it can highlight php', function () {

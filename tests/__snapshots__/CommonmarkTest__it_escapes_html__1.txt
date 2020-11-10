@@ -1,5 +1,6 @@
 &lt;h1&gt;Headline!&lt;/h1&gt;
+
 <ul>
-<li>Foo &lt;b&gt;bold text&lt;/b&gt;</li>
-<li>Bar</li>
+    <li>Foo &lt;b&gt;bold text&lt;/b&gt;</li>
+    <li>Bar</li>
 </ul>

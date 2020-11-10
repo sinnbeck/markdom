@@ -1,11 +1,12 @@
 <?php
 
+use Gajus\Dindent\Indenter;
 use function Spatie\Snapshots\assertMatchesTextSnapshot;
 
 uses(Tests\TestCase::class);
 
 test('it allows html', function () {
-    $this->app->config->set('markdom.commonmark.html_input', 'allow');
+    app()->config->set('markdom.commonmark.html_input', 'allow');
     $converter = app('markdom');
     $markdown =
 <<<MARKDOWN
@@ -16,7 +17,7 @@ MARKDOWN;
 });
 
 test('it removes html', function () {
-    $this->app->config->set('markdom.commonmark.html_input', 'strip');
+    app()->config->set('markdom.commonmark.html_input', 'strip');
     $converter = app('markdom');
     $markdown =
 <<<MARKDOWN
@@ -26,12 +27,14 @@ test('it removes html', function () {
 * Bar
 MARKDOWN;
 
-    assertMatchesTextSnapshot($converter->toHtml($markdown));
+    $html = $converter->toHtml($markdown);
+    $indent = new Indenter();
+    assertMatchesTextSnapshot( $indent->indent($html));
 });
 
 test('it escapes html', function () {
 
-    $this->app->config->set('markdom.commonmark.html_input', 'escape');
+    app()->config->set('markdom.commonmark.html_input', 'escape');
     $converter = app('markdom');
     $markdown =
         <<<MARKDOWN
@@ -41,12 +44,14 @@ test('it escapes html', function () {
 * Bar
 MARKDOWN;
 
-    assertMatchesTextSnapshot($converter->toHtml($markdown));
+    $html = $converter->toHtml($markdown);
+    $indent = new Indenter();
+    assertMatchesTextSnapshot( $indent->indent($html));
 });
 
 test('it can add strong text', function () {
 
-    $this->app->config->set('markdom.render_options.html_input', 'escape');
+    app()->config->set('markdom.render_options.html_input', 'escape');
     $converter = app('markdom');
     $markdown =
         <<<MARKDOWN

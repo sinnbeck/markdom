@@ -24,7 +24,7 @@ test('it can parse multiple times', function () {
 })->group('a');
 
 test('it can add a class', function () {
-    $this->app->config->set('markdom.classes', [
+    app()->config->set('markdom.classes', [
         'h1' => 'title',
     ]);
     $converter = app('markdom');
@@ -33,7 +33,7 @@ test('it can add a class', function () {
 });
 
 test('it can add classes to multiple items', function () {
-    $this->app->config->set('markdom.classes', [
+    app()->config->set('markdom.classes', [
         'h1' => 'title',
     ]);
     $converter = app('markdom');
@@ -49,7 +49,7 @@ MARKDOWN;
 });
 
 test('it can override class', function () {
-    $this->app->config->set('markdom.classes', [
+    app()->config->set('markdom.classes', [
         'h1' => 'title',
     ]);
     $converter = app('markdom');
@@ -68,7 +68,7 @@ MARKDOWN;
 });
 
 test('it can add multiple classes to multiple items', function () {
-    $this->app->config->set('markdom.classes', [
+    app()->config->set('markdom.classes', [
         'h1' => 'text-2xl font-bold uppercase',
         'p' => 'text-gray-500',
     ]);

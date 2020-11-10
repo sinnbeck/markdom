@@ -20,7 +20,7 @@ test('can resolve by facade', function () {
 });
 
 test('can resolve by injection', function () {
-    $markdom = $this->app->make(\Sinnbeck\Markdom\Markdom::class);
+    $markdom = app()->make(\Sinnbeck\Markdom\Markdom::class);
     assertEquals(\Sinnbeck\Markdom\Markdom::class, get_class($markdom));
     assertEquals(Highlighter::class, get_class($markdom->getHighlighter()));
 });
