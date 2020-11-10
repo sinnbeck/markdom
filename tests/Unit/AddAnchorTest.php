@@ -22,8 +22,6 @@ test('it adds an anchor tag before if enabled', function () {
 ## Lorem ipsum
 Lorem ipsum
 ### Foo bar!
-* Foo
-* Bar
 #### Bar baz
 MARKDOWN;
 
@@ -47,8 +45,6 @@ test('it adds an anchor tag after if enabled', function () {
 ## Lorem ipsum
 Lorem ipsum
 ### Foo bar!
-* Foo
-* Bar
 #### Bar baz
 MARKDOWN;
 
@@ -72,8 +68,6 @@ test('it wraps an anchor tag if enabled', function () {
 ## Lorem ipsum
 Lorem ipsum
 ### Foo bar!
-* Foo
-* Bar
 #### Bar baz
 MARKDOWN;
 
@@ -97,8 +91,6 @@ test('it add an anchor tag prepend if enabled', function () {
 ## Lorem ipsum
 Lorem ipsum
 ### Foo bar!
-* Foo
-* Bar
 #### Bar baz
 MARKDOWN;
 
@@ -122,8 +114,6 @@ test('it add an anchor tag append if enabled', function () {
 ## Lorem ipsum
 Lorem ipsum
 ### Foo bar!
-* Foo
-* Bar
 #### Bar baz
 MARKDOWN;
 
@@ -149,8 +139,6 @@ test('it throws an exception if position is unknown', function () {
 ## Lorem ipsum
 Lorem ipsum
 ### Foo bar!
-* Foo
-* Bar
 #### Bar baz
 MARKDOWN;
 
