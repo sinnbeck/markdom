@@ -9,11 +9,6 @@ Markdom is a laravel package to make it simple to convert markdown to beautifull
 
 ![Preview](preview.png)
 
-### Credits
-* Markdown parsing: [CommonMark](https://github.com/thephpleague/commonmark)
-* DOM manipulation: [HtmlPageDom](https://github.com/wasinger/htmlpagedom)
-* Code highlighting: [highlight.php](https://github.com/scrivo/highlight.php) 
-
 ## Installation
 Install the package using composer
 ```
@@ -164,3 +159,9 @@ vendor/bin/pest
 - [ ] Minification of highlight styles
 - [ ] Guide for using cdn version of highlight styles (inline code breaks!)
 - [ ] Look into passing manually set language to highlight.php
+
+## Credits
+* Markdown parsing: [CommonMark](https://github.com/thephpleague/commonmark)
+* DOM manipulation: [HtmlPageDom](https://github.com/wasinger/htmlpagedom)
+* Code highlighting: [highlight.php](https://github.com/scrivo/highlight.php) 
+ 
