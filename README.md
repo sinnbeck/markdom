@@ -1,6 +1,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/sinnbeck/markdom.svg?style=flat)](https://packagist.org/packages/sinnbeck/markdom)
 [![Downloads on Packagist](https://img.shields.io/packagist/dt/sinnbeck/markdom.svg?style=flat)](https://packagist.org/packages/sinnbeck/markdom)
+![tests](https://github.com/sinnbeck/markdom/workflows/tests/badge.svg)
 
 
 # Introduction
