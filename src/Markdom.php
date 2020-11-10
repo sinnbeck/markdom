@@ -4,6 +4,7 @@ namespace Sinnbeck\Markdom;
 
 use Highlight\Highlighter;
 use Illuminate\Support\Str;
+use Sinnbeck\Markdom\Exceptions\MethodNotAllowedException;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 use League\CommonMark\CommonMarkConverter;
 use function HighlightUtilities\getStyleSheet;
@@ -48,7 +49,7 @@ class Markdom
         $this->markdown = $markdown;
         $html = $this->converter->convertToHtml($this->markdown);
 
-        $dom = HtmlPageCrawler::create($html);
+        $dom = HtmlPageCrawler::create('<div>' . $html . '</div>');
 
         $this->addCodeHighlights($dom);
 
@@ -56,7 +57,7 @@ class Markdom
 
         $this->addAnchorTags($dom);
 
-        return trim($dom->saveHTML());
+        return trim($dom->first()->html());
     }
 
     protected function addClasses($dom)
