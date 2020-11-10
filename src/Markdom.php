@@ -120,12 +120,15 @@ CSS;
             return;
         }
 
-        $method = config('markdom.anchor_tags.position') === 'before'
-            ? 'before' : 'after';
+        $method = config('markdom.anchor_tags.position', 'before');
 
         collect(config('markdom.anchor_tags.elements'))
             ->each(function ($tag) use ($dom, $method) {
                 $dom->filter($tag)->each(function($element) use ($method){
+                    throw_if(!method_exists($element, $method),
+                        MethodNotAllowedException::class
+                    );
+
                     $element->$method('<a name="' . Str::slug($element->html(),
                         config('markdom.anchor_tags.slug_delimiter')) . '"/>'
                     );
