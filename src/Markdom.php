@@ -60,30 +60,31 @@ class Markdom
 
     protected function addAnchorTags($dom)
     {
-        if (!config('markdom.anchor_tags.enabled')) {
+        if (!config('markdom.links.enabled')) {
             return;
         }
 
-        $method = config('markdom.anchor_tags.position', 'before');
+        $method = config('markdom.links.position', 'before');
 
-        collect(config('markdom.anchor_tags.elements'))
+        collect(config('markdom.links.elements'))
             ->each(function ($tag) use ($dom, $method) {
                 $dom->filter($tag)->each(function($element) use ($method){
-                    throw_if(!method_exists($element, $method),
-                        MethodNotAllowedException::class
-                    );
-
                     $slug = Str::slug(
                         $element->html(),
-                        config('markdom.anchor_tags.slug_delimiter')
+                        config('markdom.links.slug_delimiter')
                     );
 
-                    $element->$method($this->makeAnchorTag($slug));
+                    $element->setAttribute('id', $slug);
 
-                    if (config('markdom.anchor_tags.add_id_to') === 'element') {
-                        $element->setAttribute('id', $slug);
+                    if (config('markdom.links.add_anchor')) {
+                        throw_if(!method_exists($element, $method),
+                            MethodNotAllowedException::class
+                        );
+
+                        $element->$method($this->makeAnchorTag($slug));
 
                     }
+
                 });
             });
 
@@ -98,21 +99,7 @@ class Markdom
 
     protected function makeAnchorTag($slug)
     {
-        $id = config('markdom.anchor_tags.add_id_to') === 'a' ? 'id="' . $slug . '"' : '';
-        $href = config('markdom.anchor_tags.disable_href') ? '' : 'href="#' . $slug . '"';
-        if (!$id && !$href) {
-            return '';
-        }
-        $parts = [
-            '<a',
-            $id,
-            $href,
-            '/>'
-        ];
-
-        $filtered = array_filter($parts);
-
-        return implode(' ', $filtered);
+        return '<a href="#' . $slug . '" />';
     }
 
     protected function addCodeHighlights($dom)

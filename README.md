@@ -71,8 +71,8 @@ Result:
 ```
 
 ### Adding id and href
-Markdom makes it simple to add links to headings (for use in documentation).
-Just set the `anchor_tags.enabled` to `true` in the `markdom.php` config file, and Markdom takes care of the rest. 
+Markdom makes it simple to add id and links (`<a href />`) to headings (for use in documentation).
+Just set the `links.enabled` to `true` in the `markdom.php` config file, and Markdom takes care of the rest. 
 
 Check the documentation if the config, for configuration options. 
 

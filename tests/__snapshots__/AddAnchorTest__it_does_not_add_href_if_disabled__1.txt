@@ -1,3 +1,0 @@
-<a id="hello-world"></a><h1>Hello World!</h1>
-<a id="lorem-ipsum"></a><h2>Lorem ipsum</h2>
-<p>Lorem ipsum</p>

@@ -55,41 +55,29 @@ return [
     ],
 
     /**
-     * This being enabled adds an (invisible) anchor tag to configured elements
-     *   by default this is h1, h2 and h3 to make it easy to target them in a
-     *   navigation
+     * This being enabled adds an id and an (invisible) anchor tag to configured elements
      */
-    'anchor_tags' => [
+    'links' => [
         'enabled' => env('MARKDOM_ADD_ANCHORS', false),
 
         /**
-         * Here you can define which elements will receive anchor tags
+         * Here you can define which elements will receive id tags
          */
         'elements' => [
-            'h1',
             'h2',
             'h3',
+            'h4',
         ],
-
-        /**
-         * Where to add the id attribute
-         *
-         * Allowed values are 'element' and 'a'
-         */
-        'add_id_to' => 'element',
-
-        /**
-         * Disable the href attribute
-         *
-         * If the id is added to element and href
-         * is disabled, no a tag will be rendered
-         */
-        'disable_href' => false,
 
         /**
          * Set the delimiter to use when creating id and href slugs
          */
         'slug_delimiter' => '-',
+
+        /**
+         * Whether to add an achor tag
+         */
+        'add_anchor' => true,
 
         /**
          * Here you can define where the anchor shall be placed, possible values:
