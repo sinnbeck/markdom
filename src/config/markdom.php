@@ -45,7 +45,7 @@ return [
      * @markdomStyles()
      */
     'code_highlight' => [
-        'enabled' => env('MARKDOM_CODE_HIGHLIGHT', false),
+        'enabled' => false,
         'theme' => 'default',
         'languages' => [
             'javascript',
@@ -58,7 +58,7 @@ return [
      * This being enabled adds an id and an (invisible) anchor tag to configured elements
      */
     'links' => [
-        'enabled' => env('MARKDOM_ADD_ANCHORS', false),
+        'enabled' => false,
 
         /**
          * Here you can define which elements will receive id tags
