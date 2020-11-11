@@ -55,7 +55,7 @@ return [
     ],
 
     /**
-     * this being enabled adds an (invisible) anchor tag to configured elements
+     * This being enabled adds an (invisible) anchor tag to configured elements
      *   by default this is h1, h2 and h3 to make it easy to target them in a
      *   navigation
      */
@@ -63,7 +63,7 @@ return [
         'enabled' => env('MARKDOM_ADD_ANCHORS', false),
 
         /**
-         * here you can define which elements shall be used to add anchor tags
+         * Here you can define which elements will receive anchor tags
          */
         'elements' => [
             'h1',
@@ -72,19 +72,35 @@ return [
         ],
 
         /**
-         * set the delimiter which will be used to create the slugs from your elements content
-         * Lets say you have a headline "About Us", using '-' will create a slug like 'about-us'
+         * Where to add the id attribute
+         *
+         * Allowed values are 'element' and 'a'
+         */
+        'add_id_to' => 'element',
+
+        /**
+         * Disable the href attribute
+         *
+         * If the id is added to element and href
+         * is disabled, no a tag will be rendered
+         */
+        'disable_href' => false,
+
+        /**
+         * Set the delimiter to use when creating id and href slugs
          */
         'slug_delimiter' => '-',
 
         /**
-         * here you can define where the anchor shall be placed, possible values:
-         * - before: the anchor tag will be placed right before the element itself
+         * Here you can define where the anchor shall be placed, possible values:
+         * - before: the anchor tag will be placed right before the element
          *     - Example: <a name="foo"></a><h1>Foo</h1>
-         * - after: the anchor tag will be placed right after the element itself
+         * - after: the anchor tag will be placed right after the element
          *     - Example: <h1>Foo</h1><a name="foo"></a>
          * - wrap: the anchor tag will wrap the element
          *     - Example: <a name="foo"><h1>Foo</h1></a>
+         * - wrapInner: the anchor tag will wrap the content inside the element
+         *     - Example: <h1><a name="foo">Foo</a></h1>
          * - prepend: the anchor tag will be placed before the content of the element
          *     - Example: <h1><a name="foo"></a>Foo</h1>
          * - append: the anchor tag will be placed after the content of the element

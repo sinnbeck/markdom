@@ -1,5 +1,0 @@
-<h1><a name="hello-world"></a>Hello World!</h1>
-<h2><a name="lorem-ipsum"></a>Lorem ipsum</h2>
-<p>Lorem ipsum</p>
-<h3>Foo bar!</h3>
-<h4>Bar baz</h4>

@@ -70,9 +70,15 @@ Result:
 <h3 class="title text-xl font-bold border-b">More</h3>
 ```
 
+### Adding id and href
+Markdom makes it simple to add links to headings (for use in documentation).
+Just set the `anchor_tags.enabled` to `true` in the `markdom.php` config file, and Markdom takes care of the rest. 
+
+Check the documentation if the config, for configuration options. 
+
 ## Markdown configuration
 It is possible to tweak the parsing of markdown. Under the hood, Mardom uses `league/commonmark`, meaning all settings under the `commonmark` key, is just sent directly to CommonMark.
-See a list of available setting here: https://commonmark.thephpleague.com/1.5/configuration/#configuration
+See a list of available settings here: https://commonmark.thephpleague.com/1.5/configuration/#configuration
 
 ### Markdown extensions
 CommonMark comes with a lot of extensions. These can be added to the `commonmark.extensions` array which will make them automatically load.

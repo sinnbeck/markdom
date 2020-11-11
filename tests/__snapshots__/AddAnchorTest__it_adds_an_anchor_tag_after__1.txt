@@ -1,0 +1,5 @@
+<h1 id="hello-world">Hello World!</h1><a href="#hello-world"></a>
+<h2 id="lorem-ipsum">Lorem ipsum</h2><a href="#lorem-ipsum"></a>
+<p>Lorem ipsum</p>
+<h3>Foo bar!</h3>
+<h4>Bar baz</h4>

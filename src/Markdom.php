@@ -53,11 +53,42 @@ class Markdom
 
         $this->addCodeHighlights($dom);
 
-        $this->addClasses($dom);
-
         $this->addAnchorTags($dom);
 
-        return trim($dom->first()->html());
+        $this->addClasses($dom);
+
+        return trim($dom->html());
+    }
+
+    protected function addAnchorTags($dom)
+    {
+        if (!config('markdom.anchor_tags.enabled')) {
+            return;
+        }
+
+        $method = config('markdom.anchor_tags.position', 'before');
+
+        collect(config('markdom.anchor_tags.elements'))
+            ->each(function ($tag) use ($dom, $method) {
+                $dom->filter($tag)->each(function($element) use ($method){
+                    throw_if(!method_exists($element, $method),
+                        MethodNotAllowedException::class
+                    );
+
+                    $slug = Str::slug(
+                        $element->html(),
+                        config('markdom.anchor_tags.slug_delimiter')
+                    );
+
+                    $element->$method($this->makeAnchorTag($slug));
+
+                    if (config('markdom.anchor_tags.add_id_to') === 'element') {
+                        $element->setAttribute('id', $slug);
+
+                    }
+                });
+            });
+
     }
 
     protected function addClasses($dom)
@@ -65,6 +96,25 @@ class Markdom
         foreach ($this->classes as $element => $class) {
             $dom->filter($element)->addClass($class);
         }
+    }
+
+    protected function makeAnchorTag($slug)
+    {
+        $id = config('markdom.anchor_tags.add_id_to') === 'a' ? 'id="' . $slug . '"' : '';
+        $href = config('markdom.anchor_tags.disable_href') ? '' : 'href="#' . $slug . '"';
+        if (!$id && !$href) {
+            return '';
+        }
+        $parts = [
+            '<a',
+            $id,
+            $href,
+            '/>'
+        ];
+
+        $filtered = array_filter($parts);
+
+        return implode(' ', $filtered);
     }
 
     protected function addCodeHighlights($dom)
@@ -114,25 +164,4 @@ CSS;
         return getAvailableStyleSheets();
     }
 
-    protected function addAnchorTags($dom)
-    {
-        if (!config('markdom.anchor_tags.enabled')) {
-            return;
-        }
-
-        $method = config('markdom.anchor_tags.position', 'before');
-
-        collect(config('markdom.anchor_tags.elements'))
-            ->each(function ($tag) use ($dom, $method) {
-                $dom->filter($tag)->each(function($element) use ($method){
-                    throw_if(!method_exists($element, $method),
-                        MethodNotAllowedException::class
-                    );
-
-                    $element->$method('<a name="' . Str::slug($element->html(),
-                        config('markdom.anchor_tags.slug_delimiter')) . '"/>'
-                    );
-                });
-            });
-    }
 }
