@@ -3,6 +3,8 @@
 namespace Sinnbeck\Markdom;
 
 use Highlight\Highlighter;
+use Illuminate\Support\Str;
+use Sinnbeck\Markdom\Exceptions\MethodNotAllowedException;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 use League\CommonMark\CommonMarkConverter;
 use function HighlightUtilities\getStyleSheet;
@@ -47,13 +49,15 @@ class Markdom
         $this->markdown = $markdown;
         $html = $this->converter->convertToHtml($this->markdown);
 
-        $dom = HtmlPageCrawler::create($html);
+        $dom = HtmlPageCrawler::create('<div>' . $html . '</div>');
 
         $this->addCodeHighlights($dom);
 
         $this->addClasses($dom);
 
-        return trim($dom->saveHTML());
+        $this->addAnchorTags($dom);
+
+        return trim($dom->first()->html());
     }
 
     protected function addClasses($dom)
@@ -108,5 +112,27 @@ CSS;
     public function getAvailableThemes()
     {
         return getAvailableStyleSheets();
+    }
+
+    protected function addAnchorTags($dom)
+    {
+        if (!config('markdom.anchor_tags.enabled')) {
+            return;
+        }
+
+        $method = config('markdom.anchor_tags.position', 'before');
+
+        collect(config('markdom.anchor_tags.elements'))
+            ->each(function ($tag) use ($dom, $method) {
+                $dom->filter($tag)->each(function($element) use ($method){
+                    throw_if(!method_exists($element, $method),
+                        MethodNotAllowedException::class
+                    );
+
+                    $element->$method('<a name="' . Str::slug($element->html(),
+                        config('markdom.anchor_tags.slug_delimiter')) . '"/>'
+                    );
+                });
+            });
     }
 }
