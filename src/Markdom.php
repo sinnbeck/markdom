@@ -33,9 +33,7 @@ class Markdom
     public function __construct(Highlighter $highlighter, CommonMarkConverter $converter)
     {
         $this->highlighter = $highlighter;
-        $this->highlighter->setAutodetectLanguages(config('markdom.code_highlight.languages'));
         $this->converter = $converter;
-        $this->classes = config('markdom.classes', []);
     }
 
     public function setClasses($classes): self

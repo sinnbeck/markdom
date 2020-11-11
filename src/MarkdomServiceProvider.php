@@ -45,7 +45,13 @@ class MarkdomServiceProvider extends ServiceProvider
     private function registerBindings()
     {
         $this->app->bind(Markdom::class , function ($app) {
-            return new Markdom(new Highlighter(), $app->get('commonmark'));
+            $highlighter = new Highlighter();
+            $highlighter->setAutodetectLanguages($app->config->get('markdom.code_highlight.languages'));
+
+            $markdom = new Markdom($highlighter, $app->get('commonmark'));
+            $markdom->setClasses($app->config->get('markdom.classes', []));
+
+            return $markdom;
         });
 
         $this->app->alias(Markdom::class, 'markdom');
@@ -61,7 +67,7 @@ class MarkdomServiceProvider extends ServiceProvider
             return $environment;
         });
 
-        $this->app->singleton('commonmark', function (Container $app) {
+        $this->app->singleton('commonmark', function ($app) {
             $environment = $app->get('commonmark.environment');
             $config = $app->config->get('markdom.commonmark');
 
