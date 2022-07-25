@@ -78,11 +78,11 @@ Check the documentation if the config, for configuration options.
 
 ## Markdown configuration
 It is possible to tweak the parsing of markdown. Under the hood, Mardom uses `league/commonmark`, meaning all settings under the `commonmark` key, is just sent directly to CommonMark.
-See a list of available settings here: https://commonmark.thephpleague.com/1.5/configuration/#configuration
+See a list of available settings here: https://commonmark.thephpleague.com/2.3/configuration/#configuration
 
 ### Markdown extensions
-CommonMark comes with a lot of extensions. These can be added to the `commonmark.extensions` array which will make them automatically load.
-See a list of available extensions here: https://commonmark.thephpleague.com/1.5/extensions/overview/
+CommonMark comes with a lot of extensions. These can be added to the `commonmark_extensions` array which will make them automatically load.
+See a list of available extensions here: https://commonmark.thephpleague.com/2.3/extensions/overview/
 
 ## Code highlighting
 If you are using markdown for parsing code, you may enable the code highlighter, by setting `MARKDOM_CODE_HIGHLIGHT=true` in your .env file. This will automatically add highlight.js classes to the code found in code tags.
@@ -153,6 +153,9 @@ index.blade.php
 Markdom also works great with Livewire and does not require any javascript.
 
 You can get a working example of an autoupdating markdown editor using livewire here: https://github.com/sinnbeck/markdom-livewire
+
+#### Update notice!
+If you are upgrading from version 1.x to 2.x, be aware that the config format has changed alot due to changes in commonmark! It is therefor a good idea to check the new example config file in the /config directory.
 
 ## Testing
 Run tests with

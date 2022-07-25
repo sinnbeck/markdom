@@ -31,63 +31,9 @@ return [
             'unordered_list_markers' => ['-', '+', '*'],
         ],
 
-        /*
-        |--------------------------------------------------------------------------
-        | HTML Input
-        |--------------------------------------------------------------------------
-        |
-        | This option specifies how to handle untrusted HTML input.
-        |
-        | Default: 'strip'
-        |
-        */
-
         'html_input' => 'strip',
-
-        /*
-        |--------------------------------------------------------------------------
-        | Allow Unsafe Links
-        |--------------------------------------------------------------------------
-        |
-        | This option specifies whether to allow risky image URLs and links.
-        |
-        | Default: true
-        |
-        */
-
         'allow_unsafe_links' => true,
-
-        /*
-        |--------------------------------------------------------------------------
-        | Maximum Nesting Level
-        |--------------------------------------------------------------------------
-        |
-        | This option specifies the maximum permitted block nesting level.
-        |
-        | Default: PHP_INT_MAX
-        |
-        */
-
         'max_nesting_level' => PHP_INT_MAX,
-
-        /*
-        |--------------------------------------------------------------------------
-        | Slug Normalizer
-        |--------------------------------------------------------------------------
-        |
-        | This option specifies an array of options for slug normalization.
-        |
-        | Default: [
-        |              'max_length' => 255,
-        |              'unique' => 'document',
-        |          ]
-        |
-        */
-
-        'slug_normalizer' => [
-            'max_length' => 255,
-            'unique'     => 'document',
-        ],
     ],
 
     /**
@@ -95,7 +41,7 @@ return [
      * https://commonmark.thephpleague.com/2.3/extensions/overview/
      */
     'commonmark_extensions' => [
-        League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension::class,
+        League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension::class, //Required!
         //League\CommonMark\Extension\Autolink\AutolinkExtension::class,
         //League\CommonMark\Extension\Strikethrough\StrikethroughExtension::class,
     ],
