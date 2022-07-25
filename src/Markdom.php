@@ -4,6 +4,7 @@ namespace Sinnbeck\Markdom;
 
 use Highlight\Highlighter;
 use Illuminate\Support\Str;
+use League\CommonMark\MarkdownConverter;
 use Sinnbeck\Markdom\Exceptions\MethodNotAllowedException;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 use League\CommonMark\CommonMarkConverter;
@@ -26,11 +27,11 @@ class Markdom
      */
     protected $classes;
     /**
-     * @var \League\CommonMark\CommonMarkConverter
+     * @var \League\CommonMark\MarkdownConverter
      */
     protected $converter;
 
-    public function __construct(Highlighter $highlighter, CommonMarkConverter $converter)
+    public function __construct(Highlighter $highlighter, MarkdownConverter $converter)
     {
         $this->highlighter = $highlighter;
         $this->converter = $converter;

@@ -12,29 +12,92 @@ return [
         //
     ],
 
+    /**
+     * Options for CommonMark parser
+     * https://commonmark.thephpleague.com/2.3/configuration/
+     */
     'commonmark' => [
-        /**
-         * Options for CommonMark parser
-         * https://commonmark.thephpleague.com/1.5/configuration/#configuration
-         */
-        'enable_em' => true,
-        'enable_strong' => true,
-        'use_asterisk' => true,
-        'use_underscore' => true,
-        'unordered_list_markers' => ['-', '*', '+'],
-        'html_input' => 'escape',
-        'allow_unsafe_links' => false,
-        'max_nesting_level' => INF,
+        'renderer' => [
+            'block_separator' => "\n",
+            'inner_separator' => "\n",
+            'soft_break'      => "\n",
+        ],
 
-        /**
-         * CommonMark extensions to use
-         * https://commonmark.thephpleague.com/1.5/extensions/overview/
-         */
-        'extensions' => [
-            //League\CommonMark\Extension\Autolink\AutolinkExtension::class,
-            //League\CommonMark\Extension\Strikethrough\StrikethroughExtension::class,
+        'commonmark' => [
+            'enable_em'              => true,
+            'enable_strong'          => true,
+            'use_asterisk'           => true,
+            'use_underscore'         => true,
+            'unordered_list_markers' => ['-', '+', '*'],
+        ],
 
-        ]
+        /*
+        |--------------------------------------------------------------------------
+        | HTML Input
+        |--------------------------------------------------------------------------
+        |
+        | This option specifies how to handle untrusted HTML input.
+        |
+        | Default: 'strip'
+        |
+        */
+
+        'html_input' => 'strip',
+
+        /*
+        |--------------------------------------------------------------------------
+        | Allow Unsafe Links
+        |--------------------------------------------------------------------------
+        |
+        | This option specifies whether to allow risky image URLs and links.
+        |
+        | Default: true
+        |
+        */
+
+        'allow_unsafe_links' => true,
+
+        /*
+        |--------------------------------------------------------------------------
+        | Maximum Nesting Level
+        |--------------------------------------------------------------------------
+        |
+        | This option specifies the maximum permitted block nesting level.
+        |
+        | Default: PHP_INT_MAX
+        |
+        */
+
+        'max_nesting_level' => PHP_INT_MAX,
+
+        /*
+        |--------------------------------------------------------------------------
+        | Slug Normalizer
+        |--------------------------------------------------------------------------
+        |
+        | This option specifies an array of options for slug normalization.
+        |
+        | Default: [
+        |              'max_length' => 255,
+        |              'unique' => 'document',
+        |          ]
+        |
+        */
+
+        'slug_normalizer' => [
+            'max_length' => 255,
+            'unique'     => 'document',
+        ],
+    ],
+
+    /**
+     * Extensions for commonmark
+     * https://commonmark.thephpleague.com/2.3/extensions/overview/
+     */
+    'commonmark_extensions' => [
+        League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension::class,
+        //League\CommonMark\Extension\Autolink\AutolinkExtension::class,
+        //League\CommonMark\Extension\Strikethrough\StrikethroughExtension::class,
     ],
 
     /**

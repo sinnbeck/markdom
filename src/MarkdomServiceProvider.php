@@ -4,11 +4,12 @@ namespace Sinnbeck\Markdom;
 
 use Highlight\Highlighter;
 use Illuminate\Support\Arr;
-use League\CommonMark\Environment;
+use League\CommonMark\Environment\Environment;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\CommonMarkConverter;
 use Illuminate\Contracts\Container\Container;
+use League\CommonMark\MarkdownConverter;
 
 class MarkdomServiceProvider extends ServiceProvider
 {
@@ -57,9 +58,10 @@ class MarkdomServiceProvider extends ServiceProvider
         $this->app->alias(Markdom::class, 'markdom');
 
         $this->app->singleton('commonmark.environment', function ($app) {
-            $environment = Environment::createCommonMarkEnvironment();
+            $config = $app->config->get('markdom.commonmark');
+            $environment = new Environment($config);
 
-            collect($app->config->get('markdom.commonmark.extensions', []))
+            collect($app->config->get('markdom.commonmark_extensions', []))
                 ->map(function($extension) use ($environment) {
                     $environment->addExtension(new $extension());
                 });
@@ -69,9 +71,8 @@ class MarkdomServiceProvider extends ServiceProvider
 
         $this->app->singleton('commonmark', function ($app) {
             $environment = $app->get('commonmark.environment');
-            $config = $app->config->get('markdom.commonmark');
 
-            return new CommonMarkConverter(Arr::except($config, ['render_engine', 'extensions']), $environment);
+            return new MarkdownConverter($environment);
         });
     }
 
