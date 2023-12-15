@@ -46,7 +46,7 @@ class Markdom
     public function toHtml($markdown)
     {
         $this->markdown = $markdown;
-        $html = $this->converter->convertToHtml($this->markdown);
+        $html = $this->converter->convert($this->markdown);
 
         $dom = HtmlPageCrawler::create('<div>' . $html . '</div>');
 
